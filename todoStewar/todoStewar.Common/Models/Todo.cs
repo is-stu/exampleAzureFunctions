@@ -1,10 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace todoStewar.Common.Models
 {
-    class Todo
+    public class Todo
     {
+        public DateTime reatedTime { get; set; }
+
+        public string taskDescription { get; set; }
+
+        public bool isCompleted { get; set; }
     }
 }

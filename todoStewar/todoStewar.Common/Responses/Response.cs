@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace todoStewar.Common.Responses
+﻿namespace todoStewar.Common.Responses
 {
-    class Response
+    public class Response
     {
+        public bool isSuccess { get; set; }
+
+        public string message { get; set; }
+
+        public object result { get; set; }
+
     }
 }

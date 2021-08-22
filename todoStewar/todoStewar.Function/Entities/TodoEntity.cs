@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.WindowsAzure.Storage.Table;
+using System;
 
 namespace todoStewar.Function.Entities
 {
-    class TodoEntity
+    internal class TodoEntity : TableEntity
     {
+        public DateTime createdTime { get; set; }
+
+        public string taskDescription { get; set; }
+
+        public bool isCompleted { get; set; }
     }
 }
