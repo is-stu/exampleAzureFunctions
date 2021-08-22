@@ -3,7 +3,7 @@ using System;
 
 namespace todoStewar.Function.Entities
 {
-    internal class TodoEntity : TableEntity
+    public class TodoEntity : TableEntity
     {
         public DateTime createdTime { get; set; }
 

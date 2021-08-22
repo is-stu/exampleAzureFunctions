@@ -118,5 +118,59 @@ namespace todoStewar.Function.Functions
                 result = todoEntity
             }); ;
         }
+
+        [FunctionName(nameof(GetTodos))]
+        public static async Task<IActionResult> GetTodos(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "todos")] HttpRequest req,
+            [Table("todo", Connection = "AzureWebJobsStorage")] CloudTable todoTable,
+            ILogger log)
+        {
+            log.LogInformation("Get all todos saved from the table");
+
+            TableQuery<TodoEntity> query = new TableQuery<TodoEntity>();
+            TableQuerySegment<TodoEntity> todos = await todoTable.ExecuteQuerySegmentedAsync(query, null);
+
+
+            string message = "Retrieving all the todos";
+
+            log.LogInformation(message);
+
+            return new OkObjectResult(new Response
+            {
+                isSuccess = true,
+                message = message,
+                result = todos
+            }); ;
+        }
+
+        [FunctionName(nameof(GetTodoById))]
+        public static IActionResult GetTodoById(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "todo/{id}")] HttpRequest req,
+            [Table("todo", "TODO", "{id}")] TodoEntity todoEntity,
+            string id,
+            ILogger log)
+        {
+            log.LogInformation($"Get the todo with id: {id}");
+
+            if (todoEntity == null)
+            {
+                return new BadRequestObjectResult(new Response
+                {
+                    isSuccess = false,
+                    message = "Todo doesn't exist"
+                });
+            }
+
+            string message = $"todo {id} retrieved";
+
+            log.LogInformation(message);
+
+            return new OkObjectResult(new Response
+            {
+                isSuccess = true,
+                message = message,
+                result = todoEntity
+            }); ;
+        }
     }
 }
