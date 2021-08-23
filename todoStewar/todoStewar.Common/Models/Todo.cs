@@ -4,7 +4,7 @@ namespace todoStewar.Common.Models
 {
     public class Todo
     {
-        public DateTime reatedTime { get; set; }
+        public DateTime createdTime { get; set; }
 
         public string taskDescription { get; set; }
 
