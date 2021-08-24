@@ -26,7 +26,7 @@ namespace todoStewar.Tests.Helpers
         }
 
 
-        public static DefaultHttpRequest CreateHttpRequest(Guid todoId, Common.Models.Todo todoRequest)
+        public static DefaultHttpRequest CreateHttpRequest(Guid todoId, Todo todoRequest)
         {
             string request = JsonConvert.SerializeObject(todoRequest);
             return new DefaultHttpRequest(new DefaultHttpContext())
@@ -44,7 +44,7 @@ namespace todoStewar.Tests.Helpers
             };
         }
 
-        public static DefaultHttpRequest CreateHttpRequest(Common.Models.Todo todoRequest)
+        public static DefaultHttpRequest CreateHttpRequest(Todo todoRequest)
         {
             string request = JsonConvert.SerializeObject(todoRequest);
             return new DefaultHttpRequest(new DefaultHttpContext())
